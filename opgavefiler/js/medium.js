@@ -3,6 +3,39 @@ const numbers = [1, 2, 3, 4, 5];
 /* opgave 1 */
 console.group("opgave 1");
 // din kode her
+// Dit array med tal
+
+// Funktion for at udføre instruktionerne
+function udførInstruktioner() {
+  const resultatElement = document.getElementById("opgave2");
+  let sum = 0;
+  let størsteTal = numbers[0]; // Antag det første tal er det største indtil videre
+
+  // Udskriv alle tal i arrayet
+  console.log("Alle tal i arrayet:");
+  numbers.forEach(function(tal) {
+    console.log(tal);
+
+    // Beregn summen af alle tal i arrayet
+    sum += tal;
+
+    // Find det største tal i arrayet
+    if (tal > størsteTal) {
+      størsteTal = tal;
+    }
+  });
+
+  // Udskriv summen og det største tal i konsollen
+  console.log("Summen af alle tal i arrayet er: " + sum);
+  console.log("Det største tal i arrayet er: " + størsteTal);
+
+  // Vis resultaterne i HTML-elementet
+  resultatElement.innerHTML = "Alle tal i arrayet: " + numbers.join(", ") + "<br>";
+  resultatElement.innerHTML += "Summen af alle tal i arrayet er: " + sum + "<br>";
+  resultatElement.innerHTML += "Det største tal i arrayet er: " + størsteTal;
+}
+
+document.addEventListener("DOMContentLoaded", udførInstruktioner);
 
 
 console.groupEnd();
@@ -11,7 +44,74 @@ console.groupEnd();
 /* opgave 2 */
 console.group("opgave 2");
 // din kode her
-
+// Hjælpefunktion til at hente data
+function getData() {
+    // Simuleret dataarray med dyreoplysninger
+    return [
+      {
+        name: "Løve",
+        shortDescription: "Den majestætiske konge af savannen.",
+        image: "standard_tiger.jpg" // Billedfilnavn
+      },
+      {
+        name: "Elefant",
+        shortDescription: "Det største landlevende dyr på jorden.",
+        image: "elephant.jpg" // Billedfilnavn
+      },
+      {
+        name: "Giraf",
+        shortDescription: "Verdens højeste dyr med lange halse.",
+        image: "great-white.jpg" // Billedfilnavn
+      }
+      // Tilføj flere dyreoplysninger efter behov
+    ];
+  }
+  
+  // Funktion for at udføre instruktionerne
+  function udførInstruktioner() {
+    const opgave2Element = document.getElementById("opgave2");
+  
+    // Hent data ved hjælp af getData-funktionen
+    const data = getData();
+  
+    // Brug forEach til at behandle hvert dataobjekt
+    data.forEach(function (dyr) {
+      // Udskriv name og shortDescription til konsollen
+      console.log("Navn: " + dyr.name);
+      console.log("Beskrivelse: " + dyr.shortDescription);
+  
+      // Hvis DOM er tilgængelig, opret et element til dyret og tilføj det til opgave2Element
+      if (opgave2Element) {
+        const dyrElement = document.createElement("div");
+        dyrElement.classList.add("dyr");
+  
+        // Opret et billedeelement
+        const billedeElement = document.createElement("img");
+        billedeElement.src = dyr.image;
+        billedeElement.alt = dyr.name;
+  
+        // Opret et element til at vise navnet
+        const navnElement = document.createElement("p");
+        navnElement.textContent = "Navn: " + dyr.name;
+  
+        // Opret et element til at vise kort beskrivelse
+        const beskrivelseElement = document.createElement("p");
+        beskrivelseElement.textContent = "Beskrivelse: " + dyr.shortDescription;
+  
+        // Tilføj billede, navn og beskrivelse til dyrElement
+        dyrElement.appendChild(billedeElement);
+        dyrElement.appendChild(navnElement);
+        dyrElement.appendChild(beskrivelseElement);
+  
+        // Tilføj dyrElement til opgave2Element
+        opgave2Element.appendChild(dyrElement);
+      }
+    });
+  }
+  
+  // Vent med at udføre koden, indtil DOM'en er klar
+  document.addEventListener("DOMContentLoaded", udførInstruktioner);
+  
 
 console.groupEnd();
 
